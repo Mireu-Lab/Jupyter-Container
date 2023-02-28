@@ -1,8 +1,8 @@
 from notebook.auth import passwd
 from dotenv import load_dotenv
-from os import environ
+from os import environ, popen
 
-def my_password(password : str) -> None:
+def jupyter_password(password : str) -> None:
     try:
         ReturnHashPassword = passwd(password, algorithm='sha256')
         
@@ -14,13 +14,21 @@ def my_password(password : str) -> None:
             """
             SaveJupyterFile.write(SaveJupyterSetup)
             SaveJupyterFile.close()
-            return "Done"
+            return "Done!"
     
     except:
-        return "Error"
+        return "Error!"
 
+def os_password(password : str) -> str:
+    try:
+        popen(f"passwd -d {password}")
+        return "Done!"
+    
+    except:
+        return "Error!"
 
 if __name__ == "__main__":
     load_dotenv()
 
-    print(my_password(environ["MY_PASSWORD"]))
+    print(jupyter_password(environ["JUPYTER_PASSWORD"]))
+    print(os_password(environ["OS_PASSWORD"]))
