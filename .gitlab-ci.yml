@@ -34,4 +34,4 @@ docker-build:
   rules:
     - if: $CI_COMMIT_BRANCH
       exists:
-        - Dockerfile
+        - dockerfile
