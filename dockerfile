@@ -1,19 +1,20 @@
-FROM ubnutn:latest
+FROM fedora:latest
+
 
 ENV MYPASSWORD=Hosting
 
-RUN apt-get -y update && apt-get -y upgrade && apt-get -y autoremove
-RUN apt-get install -y sudo\
-                        vim\
-                        unzip\
-                        nano\ 
-                        htop\ 
-                        wget\ 
-                        net-tools\ 
-                        git
+RUN yum -y update && yum -y upgrade && yum -y autoremove
+RUN yum install -y sudo\
+                    vim\
+                    unzip\
+                    nano\ 
+                    htop\ 
+                    wget\ 
+                    net-tools\ 
+                    git
 
-RUN apt-get install -y python3\
-                        python3-pip
+RUN yum install -y python3\
+                python3-pip
 
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
@@ -33,7 +34,7 @@ RUN pip3 install jupyterlab\
 
 RUN jupyter lab --generate-config
 
-RUN apt-get update
+RUN yum update
 RUN pip3 install "jupyterlab-kite>=2.0.2"
 RUN pip install --upgrade\
                 jupyterlab\
