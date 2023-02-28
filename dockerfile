@@ -3,7 +3,7 @@ FROM fedora:latest
 
 ENV MYPASSWORD=Hosting
 
-RUN yum -y update && yum -y upgrade && yum -y autoremove
+RUN yum -y update
 RUN yum install -y sudo\
                     vim\
                     unzip\
