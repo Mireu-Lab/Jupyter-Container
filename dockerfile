@@ -18,7 +18,7 @@ RUN yum install -y python3\
 
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
-RUN sudo useradd -rm -d /home/Jupyter\
+RUN useradd -rm -d /home/Jupyter\
                 -s /bin/bash\
                 -g root -G sudo\
                 -u 1001 Jupyter
