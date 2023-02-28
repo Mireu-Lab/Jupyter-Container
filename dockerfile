@@ -1,4 +1,4 @@
-FROM ubnutn:latest
+FROM ubuntu:latest
 
 ENV MYPASSWORD=Hosting
 
