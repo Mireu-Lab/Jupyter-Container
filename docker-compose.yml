@@ -1,24 +1,20 @@
-# Docker Jupyter Container
+version: '3.4'
 
-## Proxy Container
-```yml
-  proxy:
-    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containernetwork
-    restart: always
-    container_name: Proxy-Container
-    environment:
-      - VIRTUAL_HOST=test2.container.mireu.xyz
-      - ProxyURL=0.0.0.0
-      - WebProxyPort=8080
-    depends_on:
-      - ubuntu_jupyter
-      - fedora_jupyter
-```
+services:
+  # proxy:
+  #   image: registry.gitlab.com/mireu-lab/docker-ssh-conteiner:containernetwork
+  #   restart: always
+  #   container_name: Proxy-Container
+  #   environment:
+  #     - VIRTUAL_HOST=test2.container.mireu.xyz
+  #     - ProxyURL="0.0.0.0"
+  #     - WebProxyPort="8080"
+  #   depends_on:
+  #     - ubuntu_jupyter
+  #     - fedora_jupyter
 
-## Ubuntu Container
-```yml
   ubuntu_jupyter:
-    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterubuntu
+    image: registry.gitlab.com/mireu-lab/docker-ssh-conteiner:ubuntusshcontainer
     restart: always
     container_name: Jupyter-Ubuntu-Container
     volumes:
@@ -30,12 +26,9 @@
       - datebase_mariadb
       - datebase_mysql
       - schema_redis
-```
-
-## Fedora Container
-```yml
+  
   fedora_jupyter:
-    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterfedora
+    image: registry.gitlab.com/mireu-lab/docker-ssh-conteiner:ubuntusshcontainer
     restart: always
     container_name: Jupyter-Fedora-Container
     volumes:
@@ -47,10 +40,7 @@
       - datebase_mariadb
       - datebase_mysql
       - schema_redis
-```
 
-## MongoDB Container
-```yml
   datebase_mongo:
     image: mongo
     restart: always
@@ -60,10 +50,7 @@
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: Jupyter
-```
 
-## MariaDB Container
-```yml
   datebase_mariadb:
     image: mariadb
     restart: always
@@ -72,10 +59,6 @@
       - Container_Datebase_MariaDB:/var/lib/maria:ro
     environment:
       MARIADB_ROOT_PASSWORD: Jupyter
-```
-
-## MySQL Container
-```yml
 
   datebase_mysql:
     image: mysql
@@ -86,10 +69,6 @@
       - Container_Datebase_MySQL:/var/lib/mysql:ro
     environment:
       MYSQL_ROOT_PASSWORD: Jupyter
-```
-
-## Redis Container
-```yml
 
   schema_redis:
     image: redis:alpine
@@ -101,10 +80,7 @@
     labels:
       - "name=redis"
       - "mode=standalone"
-```
 
-## Container Volume
-```yml
 volumes:
   Container_Jupyter_Ubuntu:
   Container_Jupyter_Fedora:
@@ -112,4 +88,3 @@ volumes:
   Container_Datebase_MariaDB:
   Container_Datebase_MongoDB:
   Container_Schema_Redis:
-```
