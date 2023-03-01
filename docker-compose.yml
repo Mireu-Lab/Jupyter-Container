@@ -18,7 +18,7 @@ services:
     restart: always
     container_name: Jupyter-Ubuntu-Container
     volumes:
-      - Container_Jupyter_Ubuntu:workspace:ro
+      - Container_Jupyter_Ubuntu:/workspace
     ports:
       - "8081:8888"
     depends_on:
@@ -32,7 +32,7 @@ services:
     restart: always
     container_name: Jupyter-Fedora-Container
     volumes:
-      - Container_Jupyter_Fedora:workspace:ro
+      - Container_Jupyter_Fedora:/workspace
     ports:
       - "8082:8888"
     depends_on:
@@ -46,7 +46,7 @@ services:
     restart: always
     container_name: Jupyter-MongoDB
     volumes:
-      - Container_Datebase_MongoDB:/data/db:ro
+      - Container_Datebase_MongoDB:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: Jupyter
@@ -56,7 +56,7 @@ services:
     restart: always
     container_name: Jupyter-MariaDB
     volumes:
-      - Container_Datebase_MariaDB:/var/lib/maria:ro
+      - Container_Datebase_MariaDB:/var/lib/maria
     environment:
       MARIADB_ROOT_PASSWORD: Jupyter
 
@@ -66,7 +66,7 @@ services:
     container_name: Jupyter-MySQL
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - Container_Datebase_MySQL:/var/lib/mysql:ro
+      - Container_Datebase_MySQL:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: Jupyter
 
@@ -76,7 +76,7 @@ services:
     container_name: Jupyter-Redis
     command: redis-server --port 6379
     volumes:
-      - Container_Schema_Redis:/data:ro
+      - Container_Schema_Redis:/data
     labels:
       - "name=redis"
       - "mode=standalone"
