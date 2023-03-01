@@ -1,9 +1,6 @@
 FROM fedora:latest
 
-
-ENV MYPASSWORD=Hosting
-
-RUN yum -y update
+RUN yum -y update && yum -y upgrade && yum -y autoremove
 RUN yum install -y sudo\
                     vim\
                     unzip\
@@ -17,27 +14,20 @@ RUN yum install -y python3\
                 python3-pip
 
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+RUN chsh -s /bin/bash root
 
-RUN useradd -rm -d /home/Jupyter\
-                -s /bin/bash\
-                -g root -G sudo\
-                -u 1001 Jupyter
-RUN passwd -d Jupyter
-
-USER Jupyter
-WORKDIR /home/Jupyter
-
-COPY /password.py /password.py
-
-RUN pip3 install jupyterlab\
-                python-dotenv
+RUN pip3 install jupyterlab
 
 RUN jupyter lab --generate-config
+COPY /jupyter_lab_config.py /root/.jupyter/jupyter_lab_config.py
 
 RUN yum update
-RUN pip3 install "jupyterlab-kite>=2.0.2"
 RUN pip install --upgrade\
                 jupyterlab\
                 jupyterlab-git
 
-CMD ["/setup.sh"]
+RUN mkdir workspace
+WORKDIR /workspace
+VOLUME [ "/workspace" ]
+
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--NotebookApp.token=''", "--NotebookApp.password=''", "--allow-root"]
