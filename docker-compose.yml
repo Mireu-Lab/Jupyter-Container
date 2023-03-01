@@ -14,7 +14,7 @@ services:
   #     - fedora_jupyter
 
   ubuntu_jupyter:
-    image: registry.gitlab.com/mireu-lab/docker-ssh-conteiner:ubuntusshcontainer
+    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterubuntu
     restart: always
     container_name: Jupyter-Ubuntu-Container
     volumes:
@@ -28,7 +28,7 @@ services:
       - schema_redis
   
   fedora_jupyter:
-    image: registry.gitlab.com/mireu-lab/docker-ssh-conteiner:ubuntusshcontainer
+    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterfedora
     restart: always
     container_name: Jupyter-Fedora-Container
     volumes:
