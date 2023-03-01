@@ -20,6 +20,7 @@ RUN chsh -s /bin/bash root
 RUN pip3 install jupyterlab
 
 RUN jupyter lab --generate-config
+COPY /jupyter_lab_config.py /root/.jupyter/jupyter_lab_config.py
 
 RUN apt-get update
 RUN pip install --upgrade\
