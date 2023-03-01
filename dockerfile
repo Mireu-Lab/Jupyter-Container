@@ -14,7 +14,6 @@ RUN yum install -y python3\
                 python3-pip
 
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
-RUN chsh -s /bin/bash root
 
 RUN pip3 install jupyterlab
 
