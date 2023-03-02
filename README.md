@@ -15,6 +15,23 @@
       - fedora_jupyter
 ```
 
+## Debian Container
+```yml
+  debian_jupyter:
+    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterdebian
+    restart: always
+    container_name: Jupyter-Debian-Container
+    volumes:
+      - Container_Jupyter:/workspace
+    ports:
+      - "8081:8888"
+    depends_on:
+      - datebase_mongo
+      - datebase_mariadb
+      - datebase_mysql
+      - schema_redis
+```
+
 ## Ubuntu Container
 ```yml
   ubuntu_jupyter:
@@ -22,7 +39,7 @@
     restart: always
     container_name: Jupyter-Ubuntu-Container
     volumes:
-      - Container_Jupyter_Ubuntu:workspace:ro
+      - Container_Jupyter:/workspace
     ports:
       - "8081:8888"
     depends_on:
@@ -39,7 +56,7 @@
     restart: always
     container_name: Jupyter-Fedora-Container
     volumes:
-      - Container_Jupyter_Fedora:workspace:ro
+      - Container_Jupyter:/workspace
     ports:
       - "8082:8888"
     depends_on:
@@ -56,7 +73,7 @@
     restart: always
     container_name: Jupyter-MongoDB
     volumes:
-      - Container_Datebase_MongoDB:/data/db:ro
+      - Container_Datebase_MongoDB:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: Jupyter
@@ -69,7 +86,7 @@
     restart: always
     container_name: Jupyter-MariaDB
     volumes:
-      - Container_Datebase_MariaDB:/var/lib/maria:ro
+      - Container_Datebase_MariaDB:/var/lib/maria
     environment:
       MARIADB_ROOT_PASSWORD: Jupyter
 ```
@@ -83,7 +100,7 @@
     container_name: Jupyter-MySQL
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - Container_Datebase_MySQL:/var/lib/mysql:ro
+      - Container_Datebase_MySQL:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: Jupyter
 ```
@@ -97,17 +114,21 @@
     container_name: Jupyter-Redis
     command: redis-server --port 6379
     volumes:
-      - Container_Schema_Redis:/data:ro
+      - Container_Schema_Redis:/data
     labels:
       - "name=redis"
       - "mode=standalone"
 ```
 
 ## Container Volume
+
+
+Jupyter Container는 하나의 스토리지로 묶어 다른 컨테이너에서도 동작시킬수있게 구현하였다.
+
+
 ```yml
 volumes:
-  Container_Jupyter_Ubuntu:
-  Container_Jupyter_Fedora:
+  Container_Jupyter:
   Container_Datebase_MySQL:
   Container_Datebase_MariaDB:
   Container_Datebase_MongoDB:
