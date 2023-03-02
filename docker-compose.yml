@@ -18,7 +18,7 @@ services:
     restart: always
     container_name: Jupyter-Ubuntu-Container
     volumes:
-      - Container_Jupyter_Ubuntu:/workspace
+      - Container_Jupyter:/workspace
     ports:
       - "8081:8888"
     depends_on:
@@ -32,7 +32,7 @@ services:
     restart: always
     container_name: Jupyter-Fedora-Container
     volumes:
-      - Container_Jupyter_Fedora:/workspace
+      - Container_Jupyter:/workspace
     ports:
       - "8082:8888"
     depends_on:
@@ -82,8 +82,7 @@ services:
       - "mode=standalone"
 
 volumes:
-  Container_Jupyter_Ubuntu:
-  Container_Jupyter_Fedora:
+  Container_Jupyter:
   Container_Datebase_MySQL:
   Container_Datebase_MariaDB:
   Container_Datebase_MongoDB:
