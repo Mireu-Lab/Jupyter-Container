@@ -13,6 +13,20 @@ services:
   #     - ubuntu_jupyter
   #     - fedora_jupyter
 
+  debian_jupyter:
+    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterdebian
+    restart: always
+    container_name: Jupyter-Debian-Container
+    volumes:
+      - Container_Jupyter:/workspace
+    ports:
+      - "8080:8888"
+    depends_on:
+      - datebase_mongo
+      - datebase_mariadb
+      - datebase_mysql
+      - schema_redis
+
   ubuntu_jupyter:
     image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterubuntu
     restart: always
