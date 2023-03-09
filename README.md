@@ -105,6 +105,19 @@
       MYSQL_ROOT_PASSWORD: Jupyter
 ```
 
+## PostgresDB Container
+```yml
+
+detebase_postgres:
+    image: postgres
+    restart: always
+    container_name: Jupyter-PostgresDB
+    volumes:
+      - Container_Datebase_PostgresDB:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: Jupyter
+```
+
 ## Redis Container
 ```yml
 
@@ -132,5 +145,6 @@ volumes:
   Container_Datebase_MySQL:
   Container_Datebase_MariaDB:
   Container_Datebase_MongoDB:
+  Container_Datebase_PostgresDB:
   Container_Schema_Redis:
 ```
