@@ -1,16 +1,15 @@
-FROM fedora:latest
+FROM rockylinux:9
 
-RUN yum -y update && yum -y upgrade && yum -y autoremove
-RUN yum install -y sudo\
+RUN dnf -y update && dnf -y upgrade && dnf -y autoremove
+RUN dnf install -y sudo\
                     vim\
                     unzip\
                     nano\ 
-                    htop\ 
                     wget\ 
                     net-tools\ 
                     git
 
-RUN yum install -y python3\
+RUN dnf install -y python3\
                 python3-pip
 
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
@@ -20,7 +19,7 @@ RUN pip3 install jupyterlab
 RUN jupyter lab --generate-config
 COPY /jupyter_lab_config.py /root/.jupyter/jupyter_lab_config.py
 
-RUN yum update
+RUN dnf update
 RUN pip install --upgrade\
                 jupyterlab\
                 jupyterlab-git
