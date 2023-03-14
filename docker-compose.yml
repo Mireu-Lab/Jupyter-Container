@@ -55,6 +55,20 @@ services:
       - datebase_mysql
       - schema_redis
 
+  rockylinux_jupyter:
+    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterrockylinux
+    restart: always
+    container_name: Jupyter-RockyLinux-Container
+    volumes:
+      - Container_Jupyter:/workspace
+    ports:
+      - "8083:8888"
+    depends_on:
+      - datebase_mongo
+      - datebase_mariadb
+      - datebase_mysql
+      - schema_redis
+
   datebase_mongo:
     image: mongo
     restart: always
