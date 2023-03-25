@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   # proxy:
-  #   image: registry.gitlab.com/mireu-lab/docker-ssh-conteiner:containernetwork
+  #   image: registry.gitlab.com/container-images4/docker-ssh-conteiner:containernetwork
   #   restart: always
   #   container_name: Proxy-Container
   #   environment:
@@ -14,13 +14,13 @@ services:
   #     - fedora_jupyter
 
   debian_jupyter:
-    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterdebian
+    image: registry.gitlab.com/container-images4/docker-jupyter-container:containerjupyterdebian
     restart: always
     container_name: Jupyter-Debian-Container
     volumes:
       - Container_Jupyter:/workspace
     ports:
-      - "8080:8888"
+      - "8801:8888"
     depends_on:
       - datebase_mongo
       - datebase_mariadb
@@ -28,13 +28,13 @@ services:
       - schema_redis
 
   ubuntu_jupyter:
-    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterubuntu
+    image: registry.gitlab.com/container-images4/docker-jupyter-container:containerjupyterubuntu
     restart: always
     container_name: Jupyter-Ubuntu-Container
     volumes:
       - Container_Jupyter:/workspace
     ports:
-      - "8081:8888"
+      - "8802:8888"
     depends_on:
       - datebase_mongo
       - datebase_mariadb
@@ -42,13 +42,13 @@ services:
       - schema_redis
   
   fedora_jupyter:
-    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterfedora
+    image: registry.gitlab.com/container-images4/docker-jupyter-container:containerjupyterfedora
     restart: always
     container_name: Jupyter-Fedora-Container
     volumes:
       - Container_Jupyter:/workspace
     ports:
-      - "8082:8888"
+      - "8803:8888"
     depends_on:
       - datebase_mongo
       - datebase_mariadb
@@ -56,13 +56,13 @@ services:
       - schema_redis
 
   rockylinux_jupyter:
-    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterrockylinux
+    image: registry.gitlab.com/container-images4/docker-jupyter-container:containerjupyterrockylinux
     restart: always
     container_name: Jupyter-RockyLinux-Container
     volumes:
       - Container_Jupyter:/workspace
     ports:
-      - "8083:8888"
+      - "8804:8888"
     depends_on:
       - datebase_mongo
       - datebase_mariadb
