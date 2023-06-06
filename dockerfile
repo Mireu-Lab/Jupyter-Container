@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM 12.1.1-base-centos7
 
 RUN yum -y update && yum -y upgrade && yum -y autoremove
 RUN yum install -y sudo\
