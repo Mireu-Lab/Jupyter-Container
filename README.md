@@ -15,6 +15,8 @@
       - fedora_jupyter
 ```
 
+# Dev Container
+
 ## Debian Container
 ```yml
   debian_jupyter:
@@ -65,6 +67,78 @@
       - datebase_mysql
       - schema_redis
 ```
+
+## RockyLinux Container
+```yml
+  fedora_jupyter:
+    image: registry.gitlab.com/mireu-lab/docker-jupyter-container:containerjupyterfedora
+    restart: always
+    container_name: Jupyter-Fedora-Container
+    volumes:
+      - Container_Jupyter:/workspace
+    ports:
+      - "8082:8888"
+    depends_on:
+      - datebase_mongo
+      - datebase_mariadb
+      - datebase_mysql
+      - schema_redis
+```
+
+# Dev GPU Container
+
+## Ubuntu Container
+```yml
+  gpu_ubuntu_jupyter:
+    image: registry.gitlab.com/container-images4/docker-jupyter-container:gpucontainerjupyterubuntu
+    restart: always
+    container_name: GPU-Jupyter-Ubuntu-Container
+    volumes:
+      - Container_Jupyter:/workspace
+    ports:
+      - "8805:8888"
+    depends_on:
+      - datebase_mongo
+      - datebase_mariadb
+      - datebase_mysql
+      - schema_redis
+```
+
+## CentOS Container
+```yml
+  gpu_centos_jupyter:
+    image: registry.gitlab.com/container-images4/docker-jupyter-container:gpucontainerjupytercentos
+    restart: always
+    container_name: GPU-Jupyter-CentOS-Container
+    volumes:
+      - Container_Jupyter:/workspace
+    ports:
+      - "8806:8888"
+    depends_on:
+      - datebase_mongo
+      - datebase_mariadb
+      - datebase_mysql
+      - schema_redis
+```
+
+## RockyLinux Container
+```yml
+  gpu_rockylinux_jupyter:
+    image: registry.gitlab.com/container-images4/docker-jupyter-container:gpucontainerjupyterrockylinux
+    restart: always
+    container_name: GPU-Jupyter-RockyLinux-Container
+    volumes:
+      - Container_Jupyter:/workspace
+    ports:
+      - "8807:8888"
+    depends_on:
+      - datebase_mongo
+      - datebase_mariadb
+      - datebase_mysql
+      - schema_redis
+```
+
+# DataBase Container
 
 ## MongoDB Container
 ```yml

@@ -69,6 +69,48 @@ services:
       - datebase_mysql
       - schema_redis
 
+  gpu_ubuntu_jupyter:
+    image: registry.gitlab.com/container-images4/docker-jupyter-container:gpucontainerjupyterubuntu
+    restart: always
+    container_name: GPU-Jupyter-Ubuntu-Container
+    volumes:
+      - Container_Jupyter:/workspace
+    ports:
+      - "8805:8888"
+    depends_on:
+      - datebase_mongo
+      - datebase_mariadb
+      - datebase_mysql
+      - schema_redis
+
+  gpu_centos_jupyter:
+    image: registry.gitlab.com/container-images4/docker-jupyter-container:gpucontainerjupytercentos
+    restart: always
+    container_name: GPU-Jupyter-CentOS-Container
+    volumes:
+      - Container_Jupyter:/workspace
+    ports:
+      - "8806:8888"
+    depends_on:
+      - datebase_mongo
+      - datebase_mariadb
+      - datebase_mysql
+      - schema_redis
+
+  gpu_rockylinux_jupyter:
+    image: registry.gitlab.com/container-images4/docker-jupyter-container:gpucontainerjupyterrockylinux
+    restart: always
+    container_name: GPU-Jupyter-RockyLinux-Container
+    volumes:
+      - Container_Jupyter:/workspace
+    ports:
+      - "8807:8888"
+    depends_on:
+      - datebase_mongo
+      - datebase_mariadb
+      - datebase_mysql
+      - schema_redis
+
   datebase_mongo:
     image: mongo
     restart: always
