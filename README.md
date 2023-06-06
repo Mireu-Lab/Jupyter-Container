@@ -93,6 +93,13 @@
     image: registry.gitlab.com/container-images4/docker-jupyter-container:gpucontainerjupyterubuntu
     restart: always
     container_name: GPU-Jupyter-Ubuntu-Container
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: 0
+            capabilities: [gpu, utility]
     volumes:
       - Container_Jupyter:/workspace
     ports:
@@ -110,6 +117,13 @@
     image: registry.gitlab.com/container-images4/docker-jupyter-container:gpucontainerjupytercentos
     restart: always
     container_name: GPU-Jupyter-CentOS-Container
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: 0
+            capabilities: [gpu, utility]
     volumes:
       - Container_Jupyter:/workspace
     ports:
@@ -127,6 +141,13 @@
     image: registry.gitlab.com/container-images4/docker-jupyter-container:gpucontainerjupyterrockylinux
     restart: always
     container_name: GPU-Jupyter-RockyLinux-Container
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: 0
+            capabilities: [gpu, utility]
     volumes:
       - Container_Jupyter:/workspace
     ports:
