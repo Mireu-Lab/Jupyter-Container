@@ -1,4 +1,4 @@
-FROM 12.1.1-base-rockylinux9
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-rockylinux9
 
 RUN dnf -y update && dnf -y upgrade && dnf -y autoremove
 RUN dnf install -y sudo\
