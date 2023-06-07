@@ -1,4 +1,4 @@
-FROM 12.1.1-base-centos7
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-centos7
 
 RUN yum -y update && yum -y upgrade && yum -y autoremove
 RUN yum install -y sudo\
