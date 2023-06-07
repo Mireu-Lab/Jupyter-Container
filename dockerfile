@@ -1,4 +1,4 @@
-FROM 12.1.1-base-ubuntu22.04
+FROM 12.1.1-runtime-ubuntu22.04
 
 RUN apt-get -y update && apt-get -y upgrade && apt-get -y autoremove
 
