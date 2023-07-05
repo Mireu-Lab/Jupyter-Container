@@ -15,6 +15,8 @@ RUN yum install -y python3\
 
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
+RUN sudo -H pip3 install --upgrade --ignore-installed pip setuptools
+
 RUN pip3 install jupyterlab
 
 RUN jupyter lab --generate-config
