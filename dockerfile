@@ -2,9 +2,8 @@ FROM centos:7
 
 RUN yum -y update &&\
     yum -y upgrade &&\
-    yum -y autoremove
-
-RUN yum install -y sudo\
+    yum -y autoremove &&\
+    yum install -y sudo\
     vim\
     unzip\
     nano\ 
