@@ -28,6 +28,6 @@ RUN mkdir workspace
 WORKDIR /workspace
 VOLUME [ "/workspace" ]
 
-ENV PASSWORD='jupyter1234'
+ENV PASSWORD 'jupyter1234'
 
 CMD jupyter lab --ip=0.0.0.0 --NotebookApp.token=${PASSWORD} --allow-root
