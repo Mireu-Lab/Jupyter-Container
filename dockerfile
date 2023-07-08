@@ -14,12 +14,11 @@ RUN yum -y update &&\
     python3\
     python3-pip
 
-
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime &&\
     sudo -H pip3 install --upgrade --ignore-installed pip setuptools &&\
-    pip3 install jupyterlab
+    pip3 install jupyterlab &&\
+    jupyter lab --generate-config
 
-RUN jupyter lab --generate-config
 COPY /jupyter_lab_config.py /root/.jupyter/jupyter_lab_config.py
 
 RUN yum update &&\
