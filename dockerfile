@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
+FROM tensorflow/tensorflow:latest-gpu-jupyter
 
 RUN apt-get -y update &&\
     apt-get -y upgrade &&\
