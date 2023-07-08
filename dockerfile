@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
+FROM tensorflow/tensorflow:latest-jupyter
 
 RUN apt-get -y update &&\
     apt-get -y upgrade &&\
@@ -30,6 +30,6 @@ RUN mkdir workspace
 WORKDIR /workspace
 VOLUME [ "/workspace" ]
 
-ENV PASSWORD='jupyter1234'
+ENV PASSWORD 'jupyter1234'
 
 CMD jupyter lab --ip=0.0.0.0 --NotebookApp.token=${PASSWORD} --allow-root
